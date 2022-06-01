@@ -166,11 +166,161 @@ PS：网上都是这个答案，但是我自己试了一下，还是不行。
 快捷键：Cmd + +/-
 
 
+### 014 管理 iCloud 储存空间
+
+- 在 iPhone、iPad 或 iPod touch 上：如果您使用的是 iOS 10.3 或更高版本，请前往“设置”>“[您的姓名]”>“iCloud”。轻点“iCloud 储存空间”或“管理储存空间”。
+
+- 在 Mac 上，前往苹果菜单 「 --> 系统偏好设置 --> Apple ID（互联网账户）--> iCloud」，然后点击「管理」。
+
+- 在 PC 上，请打开 Windows 版 iCloud。
+
+- 在支持的浏览器上，登录 iCloud.com。
 
 
 
+参考链接：<https://support.apple.com/zh-cn/HT204247>
+
+
+### 015 Mac 版印象笔记，美化 Markdown 样式
+
+参考链接：
+
+- <https://github.com/timothyzhw/evernote-markdown-vue>
+
+- <https://www.jianshu.com/p/1e7e0a975d30>
+
+操作步骤：
+
+（1）下载主题中的vue.css文件，以及包含字体的vue文件夹，拷贝到 目录`/Applications/印象笔记.app/Contents/Resources/common-markdown-mac/`下。
+
+（2）打开目录`/Applications/印象笔记.app/Contents/Resources/common-markdown-mac/`，编辑里面的 `index.html`文件，在最后一行`</html>`前插入如下代码：
+
+```
+  <link href="vue.css" rel="stylesheet">
+
+```
+
+（3）重启印象笔记。
 
 
 
+美化效果：
+
+![](http://img.smyhvae.com/20191210_1615.png)
 
 
+**【补充】个性化配置**
+
+
+
+（1）我们还可以增大段落之间的行距。在 vue.css 文件中，找到如下代码：
+
+```css
+.tui-editor-contents p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+```
+
+将上方代码修改为：
+
+```css
+.tui-editor-contents p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+    margin-bottom: 1.2rem;
+}
+```
+
+其实就是加了一行 `margin-bottom: 1.2rem;` 就搞定了。
+
+
+（2）修改二级标题的字体大小和颜色：
+
+找到如下代码：
+
+```css
+.tui-editor-contents h2 {
+    font-size: 24px;
+    border-bottom: 1px solid #ddd;
+    color: #2c3e50
+}
+```
+
+修改为：
+
+```css
+.tui-editor-contents h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    color: #24292e
+}
+```
+
+另外，我们还可以修改三级标题的 font-size 为 1.25rem。
+
+
+### 让 Dock 只显示已打开的应用程序
+
+> 这个功能，我都用的少，因为不习惯。
+
+**背景**：
+
+默认情况下，Dock 栏不仅会显示已打开的应用程序，还会显示最近打开过的应用程序（无论打开与否）。
+
+这种「一个不漏」的显示方式，并不是太好：
+
+- 对那些已经有不少在 Dock 中保留的项目的用户来说，随着新增的应用图标和最小化窗口的挤占，Dock 栏会越变越小。这时，Dock 中不活跃的应用程序会影响操作效率。
+
+- 对那些希望截取或录制屏幕内容的用户来说，为了保持内容的相关性，常常会在截取或录制之前将不需要的项目从 Dock 栏中移除，结束后再加以恢复，十分费力。
+
+**操作如下**：
+
+![](http://img.smyhvae.com/20200313_1935.png)
+
+参考链接：[装点你的 Dock：外观篇丨一日一技 · Mac](https://sspai.com/post/33493)
+
+
+
+### 如何解决MAC软件（dmg，akp，app）出现程序已损坏的提示
+
+「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，因为这些应用都是破解或者汉化的,那么解决方法就是临时改变Mac系统安全设置。
+
+出现这个问题的解决方法：修改系统配置：系统偏好设置... -> 安全性与隐私。修改为任何来源。
+
+如果没有这个选项的话（macOS Sierra 10.12）,打开终端，执行：
+
+```bash
+sudo spctl --master-disable
+```
+
+即可。
+
+
+### Mac “永久” 隐藏Dock
+
+> 比较实用
+
+正常情况下，将 Dock 隐藏之后，鼠标悬停在屏幕底部时，Dock 还是会出现。那要如何“永久”隐藏 Dock呢？答案是：更改 Dock 出现的时间就好了。操作如下。
+
+**设置dockc出现的时间**：（在终端输入如下命令）
+
+```bash
+#先修改停留时间（后面数字为停留时间）如：
+defaults write com.apple.dock autohide-delay -int 0      ##（时间设为最短）
+defaults write com.apple.dock autohide-delay -int 0.5    ##（时间设为 0.5s）
+defaults write com.apple.dock autohide-delay -int 10     ##（时间设为 10s）
+
+#使设置生效
+killall Dock
+```
+
+参考链接：[Mac “永久” 隐藏Dock](https://www.jianshu.com/p/47cbd4f5e4c3)
+
+
+### 使用命令行来批量添加文件扩展名
+
+参考链接：
+
+- [Mac下如何使用命令行来批量添加文件扩展名](http://www.sdifen.com/mac-rename.html)
